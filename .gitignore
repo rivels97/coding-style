@@ -3,3 +3,4 @@ app.exe
 *.txt
 check_const
 check_compare
+.vs/

@@ -1,39 +1,43 @@
-#ifndef _MY_COMPLEX_H_
-#define _MY_COMPLEX_H_
+#ifndef MYCOMPLEX_H_
+#define MYCOMPLEX_H_
+
 #include <iostream>
-using namespace std;
+
 class Complex
-{double Re;
-	double Im; 
-	public:
-Complex(double aRe=0, double aIm=0);
-Complex(const Complex&);
-~Complex(    );
-void Set(double aRe, double aIm=0);
-operator double();
- double abs();
- friend istream& operator>>(   istream&,Complex&) ; 
+{
+    double re_;
+    double im_;
+public:
+    explicit Complex(double aRe = 0, double aIm = 0);
+    Complex(const Complex&);
+    ~Complex();
+    void set(double aRe, double aIm = 0);
+    explicit operator double() const;
+    double abs() const;
 
+    friend std::istream& operator>>(std::istream&, Complex&);
+    friend std::ostream& operator<<(std::ostream&, const Complex&);
+    friend Complex operator+(const double&, const Complex&);
+    friend Complex operator-(const double&, const Complex&);
+    friend Complex operator*(const double&, const Complex&);
 
+    Complex operator+(const Complex&) const;
+    Complex operator-(const Complex&) const;
+    Complex operator*(const Complex&) const;
+    Complex operator+(const double&) const;
+    Complex operator-(const double&) const;
+    Complex operator/(const double&) const;
 
-friend ostream& operator<< (ostream&, Complex & );
+    Complex& operator+=(const Complex&);
+    Complex& operator-=(const Complex&);
+    Complex& operator*=(const Complex&);
+    Complex& operator+=(const double&);
+    Complex& operator-=(const double&);
+    Complex& operator*=(const double&);
+    Complex& operator/=(const double&);
 
-Complex operator+ (const Complex&);
-Complex operator- (const Complex&);
-Complex operator+ (const double&);
-friend 		Complex operator+ (const double&, const Complex&);
-Complex operator- (const double&);
-friend Complex operator- (const 	double&, const Complex&);
-Complex operator* (const Complex&);
-Complex operator* (const double&);
-friend Complex operator* (const double&, const Complex&)    ;Complex operator/ (const double&);
+    Complex& operator=(const Complex&);
+    Complex& operator=(const double&);
+};
 
-    Complex& operator+= (const Complex&);
-Complex  &  operator-= (const Complex&)    ;
-    Complex& operator*= (const Complex& );  Complex& operator  += (const double&);
-Complex& operator-= (const double&);
-Complex  &operator  *=(const double  & );
-Complex  & operator /=( const   double & );
-Complex& operator = (  const   Complex&);
-Complex & operator= (const double&);};
 #endif
